@@ -1,0 +1,17 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-primary" (click)="addNewRecipe()">Add New Recipe</button>{{ mname }}
+    </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+        <div class="list-group">
+            <div *ngFor = "let item of recipe;index as i">
+                <app-recipe-item [item]="item" [index]="i"></app-recipe-item>
+            </div>
+        </div>
+   </div>
+</div>
+<br>

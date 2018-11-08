@@ -1,0 +1,76 @@
+<div class="row">
+  <form [formGroup]="RecipeForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+          <button class="btn btn-success" [disabled]="!RecipeForm.valid" type="submit" name="submit">Save</button>
+          <button class="btn btn-danger" (click)="onCancel()" type="button" name="cancel">Cancel</button> 
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div  class="col-md-12" >
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div  class="col-md-12" >
+          <div class="form-group">
+              <label for="image">Image URL</label>
+              <input type="text" class="form-control" formControlName="imgPath" #imgPath>
+              
+          </div>
+      </div>
+    </div>
+    <div class="row">
+        <div  class="col-md-12" >
+          <img [src]="imgPath.value" class="img-responsive">
+        </div>
+    </div> 
+    <div class="row">
+      <div  class="col-md-12" >
+          <div class="form-group">
+              <label for="Description">Description</label>
+              <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              rows="6"
+              formControlName="description"
+              >
+              </textarea>
+          </div>
+      </div>
+    </div> 
+    <div class="row">
+      <div  class="col-md-12" formArrayName="Ingredient">
+          <div id="indg_header">Ingredients Used</div>
+          <div class="row col-md-4" id="indg_header">ItemName</div>  
+          <div class="row col-md-4" id="indg_header">Decription</div>
+          <div class="row col-md-4" id="indg_header">Price</div>
+          <div class="row" *ngFor="let indg of this.RecipeForm.get('Ingredient').controls;let i = index" [formGroupName]="i" style="margin-top: 10px">
+              <div class="col-md-4">
+                <input class="" type="text" class="form-control" formControlName="itemName">
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="itemDescp">
+              </div>
+              <div class="col-md-2">
+                <input type="number" class="form-control" formControlName="itemPrice">
+              </div>  
+              <div class="col-md-2">
+                <button type="button" class="btn btn-danger" (click)="onIndgDelete(i)">X</button>
+              </div>  
+          </div>
+          <div class="row" style="margin-top: 10px">
+              <div class="col-md-2">
+                  <button type="button" class="btn btn-success" (click)="onAddIndg()">Add Ingredients</button>
+              </div>      
+          </div>
+      </div>
+    </div>
+  </form>
+</div>
