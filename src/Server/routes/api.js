@@ -12,6 +12,7 @@ var ObjectId = require('mongodb').ObjectID;
 //const axios = require('axios');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 //const app = require('../server').app;
+const _ = require('lodash');
 
 
 
@@ -40,7 +41,7 @@ router.post("/api/storeRecipes/",function(req,res){
   var id = mongo.Types.ObjectId('5bba046bbfd10f3968ce8f21');
 
   recipes.updateOne({ _id: id } , 
-    {  'recipesList': req.body.rcpList } ,{
+    {  'recipesList': _.pick(req.body,['rcpList']) } ,{
       upsert : true
     }
       ,function(err,data){  
@@ -58,8 +59,7 @@ router.post("/api/storeRecipes/",function(req,res){
  */
 router.post("/register/",function(req,res){
   let usr = user({
-    username : req.body.username,
-    password : req.body.password
+    _.pick(req.body,['username','password'])
   }) 
     usr.save(function(err,success){  
       if(err){  
