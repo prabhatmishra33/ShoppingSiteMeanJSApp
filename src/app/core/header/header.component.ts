@@ -5,6 +5,7 @@ import { Response } from '@angular/http';
 import { RecipeService } from '../../recipes/recipe.service';
 import { AuthService } from '../../auth/auth.service'
 import { Router } from '@angular/router';
+import { Recipe } from '../../recipes/recipes.model';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +32,7 @@ export class HeaderComponent {
   onClickData(){
     this.dataService.getRecipe()
       .subscribe(
-        (res:Response)=>{
+        (res)=>{
           let recipeLsit = res['recipesList'];
           this.recipeServ.overWriteRecipe(recipeLsit);
         }
@@ -45,9 +46,12 @@ export class HeaderComponent {
             console.log(res);
             this.authServ.setToken(null);
             this.router.navigate(['/']);
-           //window.location.replace('/');
         }
       )
+  }
+
+  isAuthenticated(){
+    return this.authServ.isAuthenticated();
   }
 
 }

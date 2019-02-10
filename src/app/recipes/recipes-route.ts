@@ -9,7 +9,6 @@ import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AuthGuard } from '../auth/auth-guard.service';
 
-
 const recipesRoutes  : Routes = [
   //  { path : '' ,redirectTo : '/recipes'  ,pathMatch:'full'},  
     { path :'' ,component : RecipesComponent ,
@@ -31,7 +30,8 @@ const recipesRoutes  : Routes = [
     ],
     exports:[
         RouterModule
-    ]
+    ],
+    providers : [AuthGuard]
 })
 
 

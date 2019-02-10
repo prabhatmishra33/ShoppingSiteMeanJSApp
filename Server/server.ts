@@ -1,6 +1,15 @@
+// These are important and needed before anything else
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
+import { renderModuleFactory } from '@angular/platform-server';
+
+import { enableProdMode } from '@angular/core';
+
+
 // Get dependencies
 const express = require('express');
-const path = require('path');
+import { join } from 'path';
 const http = require('http');
 const bodyParser = require('body-parser');
 var mongo = require("mongoose");
@@ -10,25 +19,27 @@ var session = require('express-session');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 // Get our API routes
 const api = require('./routes/api');
+import { readFileSync } from 'fs';
+const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // var ObjectId = require('mongodb').ObjectID;
 
 
+// Faster server renders w/ Prod mode (dev mode never needed)
+enableProdMode();
+
+// Express server
 const app = express();
 
 /*
 * MongoDB Connection
 */
-var db = mongo.connect("mongodb://localhost:27017/ShoppingSite", function(err, response){  
+var db = mongo.connect("mongodb://localhost:27017/ShoppingSite",  { useNewUrlParser: true },function(err, response){  
    if(err){ console.log( err); }  
    else{ console.log('Connected to MongoDB'); 
     return response;
   }  
 }); 
-
-
-
-
   
 
 
@@ -46,8 +57,36 @@ app.set('superSecret', 'iLoveMyLaptop');// secret variable
 
 
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+// // Point static path to dist
+// app.use(express.static(path.join(__dirname, 'dist')));
+
+// Our index.html we'll use as our template
+const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
+
+// * NOTE :: leave this as require() since this file is built Dynamically from webpack
+
+
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./../dist/project-server/main');
+
+const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+
+app.engine('html', (_, options, callback) => {
+  renderModuleFactory(AppServerModuleNgFactory, {
+    // Our index.html
+    document: template,
+    url: options.req.url,
+    // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
+    extraProviders: [
+      provideModuleMap(LAZY_MODULE_MAP)
+    ]
+  }).then(html => {
+    callback(null, html);
+  });
+});
+
+app.set('view engine', 'html');
+app.set('views', join(DIST_FOLDER, 'browser'));
+
 //app.use(express.cookieParser());
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -103,25 +142,27 @@ app.use('/api/*',function(req, res, next) {
 // Set our api routes
 app.use('/', api);
 
-///app.use(morgan(':method :url'));
-
-
 
 
 
 
 //Catch all other routes and return the index file
+// app.get('*', (req, res) => {
+//   // console.log()
+//   // console.log(req.url)
+//   console.log(path.join(__dirname, 'dist/index.html'));
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
+
+
+
+// Server static files from /browser
+app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+
 app.get('*', (req, res) => {
-  // console.log()
-  // console.log(req.url)
-  console.log(path.join(__dirname, 'dist/index.html'));
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
-// app.all('*',(req, res) => {
-//   console.log(req.url);
-//   console.log()
-// })
 
 /**
  * Get port from environment and store in Express.
@@ -129,7 +170,10 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-app.listen(port)
+// Start up the Node server
+app.listen(port, () => {
+  console.log(`Node server listening on http://localhost:${port}`);
+});
 
 // /**
 //  * Create HTTP server.

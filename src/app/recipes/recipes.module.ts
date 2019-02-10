@@ -13,6 +13,8 @@ import { RecipesRouter } from "./recipes-route";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared/shared.module";
 
+import { HttpModule } from '@angular/http';
+
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { SharedModule } from "../shared/shared.module";
         
     ],
     imports:[
+        HttpModule,
         CommonModule,
         ReactiveFormsModule,
         RecipesRouter,

@@ -51,7 +51,7 @@
           <div class="row col-md-4" id="indg_header">ItemName</div>  
           <div class="row col-md-4" id="indg_header">Decription</div>
           <div class="row col-md-4" id="indg_header">Price</div>
-          <div class="row" *ngFor="let indg of this.RecipeForm.get('Ingredient').controls;let i = index" [formGroupName]="i" style="margin-top: 10px">
+          <div class="row" *ngFor="let indg of getControls();let i = index" [formGroupName]="i" style="margin-top: 10px">
               <div class="col-md-4">
                 <input class="" type="text" class="form-control" formControlName="itemName">
               </div>

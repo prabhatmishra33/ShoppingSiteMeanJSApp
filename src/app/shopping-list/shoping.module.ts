@@ -5,6 +5,7 @@ import { ShoppingListComponent } from './shopping-list.component';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 
     ],
     imports:[
+        HttpModule,
         CommonModule,
         FormsModule,
         ShopRouter

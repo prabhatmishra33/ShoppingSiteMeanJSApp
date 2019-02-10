@@ -105,17 +105,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _shopping_list_shoppinglist_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shopping-list/shoppinglist.service */ "./src/app/shopping-list/shoppinglist.service.ts");
-/* harmony import */ var _app_route__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.route */ "./src/app/app.route.ts");
-/* harmony import */ var _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./recipes/recipe.service */ "./src/app/recipes/recipe.service.ts");
-/* harmony import */ var _shared_data_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shared/data-storage.service */ "./src/app/shared/data-storage.service.ts");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
-/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./auth/auth.service */ "./src/app/auth/auth.service.ts");
-/* harmony import */ var _auth_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./auth/auth-guard.service */ "./src/app/auth/auth-guard.service.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _auth_auth_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./auth/auth.module */ "./src/app/auth/auth.module.ts");
-/* harmony import */ var _shopping_list_shoping_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shopping-list/shoping.module */ "./src/app/shopping-list/shoping.module.ts");
-/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
+/* harmony import */ var _app_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.route */ "./src/app/app.route.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _auth_auth_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./auth/auth.module */ "./src/app/auth/auth.module.ts");
+/* harmony import */ var _shopping_list_shoping_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shopping-list/shoping.module */ "./src/app/shopping-list/shoping.module.ts");
+/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -126,11 +121,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
-
-
-
-
+//import { HttpModule } from '@angular/http';
 
 
 
@@ -145,15 +136,15 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_route__WEBPACK_IMPORTED_MODULE_4__["AppRouter"],
-                _angular_http__WEBPACK_IMPORTED_MODULE_7__["HttpModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_10__["SharedModule"],
-                _auth_auth_module__WEBPACK_IMPORTED_MODULE_11__["AuthModule"],
-                _shopping_list_shoping_module__WEBPACK_IMPORTED_MODULE_12__["ShopModule"],
-                _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'my-app' }),
+                _app_route__WEBPACK_IMPORTED_MODULE_3__["AppRouter"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+                //HttpModule,
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_5__["SharedModule"],
+                _auth_auth_module__WEBPACK_IMPORTED_MODULE_6__["AuthModule"],
+                _shopping_list_shoping_module__WEBPACK_IMPORTED_MODULE_7__["ShopModule"],
+                _core_core_module__WEBPACK_IMPORTED_MODULE_8__["CoreModule"]
             ],
-            providers: [_shopping_list_shoppinglist_service__WEBPACK_IMPORTED_MODULE_3__["ShoppingService"], _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_5__["RecipeService"], _shared_data_storage_service__WEBPACK_IMPORTED_MODULE_6__["DataStorageService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"], _auth_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -196,53 +187,12 @@ var AppRouter = /** @class */ (function () {
     AppRouter = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(appRoute)
+                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(appRoute, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"] })
             ],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         })
     ], AppRouter);
     return AppRouter;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/auth/auth-guard.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/auth/auth-guard.service.ts ***!
-  \********************************************/
-/*! exports provided: AuthGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(authServ) {
-        this.authServ = authServ;
-    }
-    AuthGuard.prototype.canActivate = function (route, state) {
-        return this.authServ.isAuthenticated();
-    };
-    AuthGuard = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
-    ], AuthGuard);
-    return AuthGuard;
 }());
 
 
@@ -359,7 +309,7 @@ var AuthModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -374,8 +324,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var AuthService = /** @class */ (function () {
-    function AuthService(http) {
-        this.http = http;
+    function AuthService(HttpClient) {
+        this.HttpClient = HttpClient;
         this.tokenId = null;
     }
     AuthService.prototype.setToken = function (token) {
@@ -389,20 +339,22 @@ var AuthService = /** @class */ (function () {
             username: emailId,
             password: password
         };
-        return this.http.post('/register', usrObj);
+        return this.HttpClient.post('/register', usrObj);
     };
     AuthService.prototype.signInUser = function (emailId, password) {
         var usrObj = {
             username: emailId,
             password: password
         };
-        return this.http.post('/login', usrObj)
+        return this.HttpClient.post('/login', usrObj)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) {
-            return res.json();
+            return res;
         }));
     };
     AuthService.prototype.signOut = function () {
-        return this.http.get('/api/logout?token=' + this.tokenId);
+        return this.HttpClient.get('/api/logout', {
+            observe: 'response',
+        });
     };
     AuthService.prototype.isAuthenticated = function () {
         if (this.tokenId)
@@ -412,7 +364,7 @@ var AuthService = /** @class */ (function () {
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AuthService);
     return AuthService;
 }());
@@ -496,6 +448,7 @@ var SigninComponent = /** @class */ (function () {
                 that.router.navigate(['/']);
             }, 1000);
         }, function (err) {
+            console.log(err);
             _this.submit = true;
             _this.signinSuccess = false;
         });
@@ -606,12 +559,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.component */ "./src/app/core/home/home.component.ts");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _app_route__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.route */ "./src/app/app.route.ts");
+/* harmony import */ var _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../recipes/recipe.service */ "./src/app/recipes/recipe.service.ts");
+/* harmony import */ var _shared_data_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/data-storage.service */ "./src/app/shared/data-storage.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _shopping_list_shoppinglist_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shopping-list/shoppinglist.service */ "./src/app/shopping-list/shoppinglist.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth_interceptor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../shared/auth.interceptor */ "./src/app/shared/auth.interceptor.ts");
+/* harmony import */ var _shared_logging_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../shared/logging.interceptor */ "./src/app/shared/logging.interceptor.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
+
 
 
 
@@ -633,7 +600,15 @@ var CoreModule = /** @class */ (function () {
             exports: [
                 _header_header_component__WEBPACK_IMPORTED_MODULE_1__["HeaderComponent"],
                 _app_route__WEBPACK_IMPORTED_MODULE_4__["AppRouter"]
-            ]
+            ],
+            providers: [
+                _shopping_list_shoppinglist_service__WEBPACK_IMPORTED_MODULE_8__["ShoppingService"],
+                _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_5__["RecipeService"],
+                _shared_data_storage_service__WEBPACK_IMPORTED_MODULE_6__["DataStorageService"],
+                _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HTTP_INTERCEPTORS"], useClass: _shared_auth_interceptor__WEBPACK_IMPORTED_MODULE_10__["AuthInterceptor"], multi: true },
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HTTP_INTERCEPTORS"], useClass: _shared_logging_interceptor__WEBPACK_IMPORTED_MODULE_11__["LogInterceptor"], multi: true }
+            ],
         })
     ], CoreModule);
     return CoreModule;
@@ -661,7 +636,7 @@ module.exports = "/* Add a black background color to the top navigation */\r\n.t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n    <nav class=\"navbar navbar-default\" >\r\n        <div class=\"container-fluid\" >\r\n            <div class=\"navbar-header\">\r\n                <a class=\"navbar-brand\" routerLink=\"/\">Recipe Book</a>\r\n            </div> \r\n            <div class=\"collapse navbar-collapse\">  \r\n                <ul class=\"nav navbar-nav\">\r\n                    <li routerLinkActive=\"active\"><a  routerLink=\"/recipes\">Recipe</a></li>\r\n                    <li routerLinkActive=\"active\"><a routerLink=\"/shop\">Shop</a></li>\r\n                </ul>   \r\n                <ul class=\"nav navbar-nav navbar-right\">\r\n                    <li ><a  style=\"cursor: pointer;\"  (click)=\"logout()\" *ngIf=\"authServ.isAuthenticated()\">Logout</a></li>\r\n                    <ng-template [ngIf]=\"!authServ.isAuthenticated()\">\r\n                        <li routerLinkActive=\"active\"><a routerLink=\"/signin\" >Login</a></li>\r\n                        <li routerLinkActive=\"active\"><a routerLink=\"/signup\" >Register</a></li>           \r\n                    </ng-template>\r\n                    <li class=\"dropdown\" appDropdown *ngIf=\"authServ.isAuthenticated()\">\r\n                        <a  class=\"dropdown-toggle\" role=\"button\">Manage<span class=\"caret\"></span></a>\r\n                        <ul class=\"dropdown-menu\">\r\n                            <li><a style=\"cursor: pointer;\" (click)=\"onSaveData()\">Save Data</a></li>\r\n                            <li><a style=\"cursor: pointer;\" (click)=\"onClickData()\">Fetch Data</a></li>\r\n                        </ul>         \r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>     "
+module.exports = "\r\n<div class=\"container\">\r\n    <nav class=\"navbar navbar-default\" >\r\n        <div class=\"container-fluid\" >\r\n            <div class=\"navbar-header\">\r\n                <a class=\"navbar-brand\" routerLink=\"/\">Recipe Book</a>\r\n            </div> \r\n            <div class=\"collapse navbar-collapse\">  \r\n                <ul class=\"nav navbar-nav\">\r\n                    <li routerLinkActive=\"active\"><a  routerLink=\"/recipes\">Recipe</a></li>\r\n                    <li routerLinkActive=\"active\"><a routerLink=\"/shop\">Shop</a></li>\r\n                </ul>   \r\n                <ul class=\"nav navbar-nav navbar-right\">\r\n                    <li ><a  style=\"cursor: pointer;\"  (click)=\"logout()\" *ngIf=\"isAuthenticated()\">Logout</a></li>\r\n                    <ng-template [ngIf]=\"!isAuthenticated()\">\r\n                        <li routerLinkActive=\"active\"><a routerLink=\"/signin\" >Login</a></li>\r\n                        <li routerLinkActive=\"active\"><a routerLink=\"/signup\" >Register</a></li>           \r\n                    </ng-template>\r\n                    <li class=\"dropdown\" appDropdown *ngIf=\"isAuthenticated()\">\r\n                        <a  class=\"dropdown-toggle\" role=\"button\">Manage<span class=\"caret\"></span></a>\r\n                        <ul class=\"dropdown-menu\">\r\n                            <li><a style=\"cursor: pointer;\" (click)=\"onSaveData()\">Save Data</a></li>\r\n                            <li><a style=\"cursor: pointer;\" (click)=\"onClickData()\">Fetch Data</a></li>\r\n                        </ul>         \r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>     "
 
 /***/ }),
 
@@ -726,6 +701,9 @@ var HeaderComponent = /** @class */ (function () {
             _this.router.navigate(['/']);
             //window.location.replace('/');
         });
+    };
+    HeaderComponent.prototype.isAuthenticated = function () {
+        return this.authServ.isAuthenticated();
     };
     HeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -887,6 +865,49 @@ var Recipe = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/auth.interceptor.ts":
+/*!********************************************!*\
+  !*** ./src/app/shared/auth.interceptor.ts ***!
+  \********************************************/
+/*! exports provided: AuthInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthInterceptor", function() { return AuthInterceptor; });
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthInterceptor = /** @class */ (function () {
+    function AuthInterceptor(authService) {
+        this.authService = authService;
+    }
+    AuthInterceptor.prototype.intercept = function (req, next) {
+        console.log("Request Intercepted!");
+        var copiedReq = req.clone({ params: req.params.set('token', this.authService.getToken()) });
+        return next.handle(copiedReq);
+    };
+    AuthInterceptor = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
+    ], AuthInterceptor);
+    return AuthInterceptor;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/data-storage.service.ts":
 /*!************************************************!*\
   !*** ./src/app/shared/data-storage.service.ts ***!
@@ -898,7 +919,7 @@ var Recipe = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataStorageService", function() { return DataStorageService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../recipes/recipe.service */ "./src/app/recipes/recipe.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
@@ -913,39 +934,46 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+///import { Http , Response } from "@angular/http";
 
 
 
 // import 'rxjs/Rx';
 // import { map } from 'rxjs/operators';
 var DataStorageService = /** @class */ (function () {
-    function DataStorageService(http, recipeSer, authServ) {
-        this.http = http;
+    function DataStorageService(httpClient, recipeSer, authServ) {
+        this.httpClient = httpClient;
         this.recipeSer = recipeSer;
         this.authServ = authServ;
     }
     DataStorageService.prototype.storeRecipe = function () {
+        //var headers = new HttpHeaders().set('authorize','');
+        // var param = 
         var serList = {
             rcpList: this.recipeSer.getRecipe()
         };
         console.log(serList);
-        return this.http.post('/api/storeRecipes?token=' + this.authServ.getToken(), serList);
+        return this.httpClient.post('/api/storeRecipes', serList, {
+            observe: 'body',
+        });
     };
     DataStorageService.prototype.getRecipe = function () {
         // var serList = {
         //     rcpList : this.recipeSer.getRecipe()
         // }
         ///console.log(serList);
-        return this.http.get('/api/getRecipes?token=' + this.authServ.getToken())
+        return this.httpClient.get('/api/getRecipes', {
+            observe: 'body',
+        })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
             // console.log('console of getRecipe');
             // console.log(res)
-            return res.json();
+            return res;
         }));
     };
     DataStorageService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"], _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_2__["RecipeService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _recipes_recipe_service__WEBPACK_IMPORTED_MODULE_2__["RecipeService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], DataStorageService);
     return DataStorageService;
 }());
@@ -1027,6 +1055,35 @@ var Ingredients = /** @class */ (function () {
         //this.itemPrice = itemPrice
     }
     return Ingredients;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/logging.interceptor.ts":
+/*!***********************************************!*\
+  !*** ./src/app/shared/logging.interceptor.ts ***!
+  \***********************************************/
+/*! exports provided: LogInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogInterceptor", function() { return LogInterceptor; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+var LogInterceptor = /** @class */ (function () {
+    function LogInterceptor() {
+    }
+    LogInterceptor.prototype.intercept = function (req, next) {
+        console.log("Response Intercepted!");
+        //const copiedReq = req.clone({ params : req.params.set('token',this.authService.getToken()) })
+        return next.handle(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(function (event) {
+            console.log("Logging Intercpetor ", event);
+        }));
+    };
+    return LogInterceptor;
 }());
 
 

@@ -1,14 +1,16 @@
-import { AppPage } from './app.po';
+// import {} from 'jasmine';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+// import { AppPage } from './app.po';
 
-  beforeEach(() => {
-    page = new AppPage();
-  });
+// describe('workspace-project App', () => {
+//   let page: AppPage;
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
-});
+//   beforeEach(() => {
+//     page = new AppPage();
+//   });
+
+//   it('should display welcome message', () => {
+//     page.navigateTo();
+//     expect(page.getParagraphText()).toEqual('Welcome to app!');
+//   });
+// });

@@ -143,7 +143,8 @@ router.post('/login',passport.authenticate('local'),function(req, res) {
 router.get('/api/logout', function(req, res){
   console.log(req.session);
   req.logout();
-  res.redirect('/');
+  res.send();
+  //res.redirect('/');
 });
 
 

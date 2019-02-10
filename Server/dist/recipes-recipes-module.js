@@ -1,5 +1,46 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["recipes-recipes-module"],{
 
+/***/ "./src/app/auth/auth-guard.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/auth/auth-guard.service.ts ***!
+  \********************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authServ) {
+        this.authServ = authServ;
+    }
+    AuthGuard.prototype.canActivate = function (route, state) {
+        return this.authServ.isAuthenticated();
+    };
+    AuthGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
+    ], AuthGuard);
+    return AuthGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/recipes/recipe-detail/recipe-detail.component.css":
 /*!*******************************************************************!*\
   !*** ./src/app/recipes/recipe-detail/recipe-detail.component.css ***!
@@ -108,7 +149,7 @@ module.exports = "\r\n\r\n#indg_header{\r\n    font-weight: bold;\r\n}\r\n\r\nin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <form [formGroup]=\"RecipeForm\" (ngSubmit)=\"onSubmit()\">\n    <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"form-group\">\n          <button class=\"btn btn-success\" [disabled]=\"!RecipeForm.valid\" type=\"submit\" name=\"submit\">Save</button>\n          <button class=\"btn btn-danger\" (click)=\"onCancel()\" type=\"button\" name=\"cancel\">Cancel</button> \n      </div>\n    </div>\n  </div>\n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n        <div class=\"form-group\">\n            <label for=\"name\">Name</label>\n            <input type=\"text\" class=\"form-control\" formControlName=\"name\">\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n          <div class=\"form-group\">\n              <label for=\"image\">Image URL</label>\n              <input type=\"text\" class=\"form-control\" formControlName=\"imgPath\" #imgPath>\n              \n          </div>\n      </div>\n    </div>\n    <div class=\"row\">\n        <div  class=\"col-md-12\" >\n          <img [src]=\"imgPath.value\" class=\"img-responsive\">\n        </div>\n    </div> \n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n          <div class=\"form-group\">\n              <label for=\"Description\">Description</label>\n              <textarea\n              type=\"text\"\n              id=\"description\"\n              class=\"form-control\"\n              rows=\"6\"\n              formControlName=\"description\"\n              >\n              </textarea>\n          </div>\n      </div>\n    </div> \n    <div class=\"row\">\n      <div  class=\"col-md-12\" formArrayName=\"Ingredient\">\n          <div id=\"indg_header\">Ingredients Used</div>\n          <div class=\"row col-md-4\" id=\"indg_header\">ItemName</div>  \n          <div class=\"row col-md-4\" id=\"indg_header\">Decription</div>\n          <div class=\"row col-md-4\" id=\"indg_header\">Price</div>\n          <div class=\"row\" *ngFor=\"let indg of this.RecipeForm.get('Ingredient').controls;let i = index\" [formGroupName]=\"i\" style=\"margin-top: 10px\">\n              <div class=\"col-md-4\">\n                <input class=\"\" type=\"text\" class=\"form-control\" formControlName=\"itemName\">\n              </div>\n              <div class=\"col-md-4\">\n                <input type=\"text\" class=\"form-control\" formControlName=\"itemDescp\">\n              </div>\n              <div class=\"col-md-2\">\n                <input type=\"number\" class=\"form-control\" formControlName=\"itemPrice\">\n              </div>  \n              <div class=\"col-md-2\">\n                <button type=\"button\" class=\"btn btn-danger\" (click)=\"onIndgDelete(i)\">X</button>\n              </div>  \n          </div>\n          <div class=\"row\" style=\"margin-top: 10px\">\n              <div class=\"col-md-2\">\n                  <button type=\"button\" class=\"btn btn-success\" (click)=\"onAddIndg()\">Add Ingredients</button>\n              </div>      \n          </div>\n      </div>\n    </div>\n  </form>\n</div>"
+module.exports = "<div class=\"row\">\n  <form [formGroup]=\"RecipeForm\" (ngSubmit)=\"onSubmit()\">\n    <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"form-group\">\n          <button class=\"btn btn-success\" [disabled]=\"!RecipeForm.valid\" type=\"submit\" name=\"submit\">Save</button>\n          <button class=\"btn btn-danger\" (click)=\"onCancel()\" type=\"button\" name=\"cancel\">Cancel</button> \n      </div>\n    </div>\n  </div>\n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n        <div class=\"form-group\">\n            <label for=\"name\">Name</label>\n            <input type=\"text\" class=\"form-control\" formControlName=\"name\">\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n          <div class=\"form-group\">\n              <label for=\"image\">Image URL</label>\n              <input type=\"text\" class=\"form-control\" formControlName=\"imgPath\" #imgPath>\n              \n          </div>\n      </div>\n    </div>\n    <div class=\"row\">\n        <div  class=\"col-md-12\" >\n          <img [src]=\"imgPath.value\" class=\"img-responsive\">\n        </div>\n    </div> \n    <div class=\"row\">\n      <div  class=\"col-md-12\" >\n          <div class=\"form-group\">\n              <label for=\"Description\">Description</label>\n              <textarea\n              type=\"text\"\n              id=\"description\"\n              class=\"form-control\"\n              rows=\"6\"\n              formControlName=\"description\"\n              >\n              </textarea>\n          </div>\n      </div>\n    </div> \n    <div class=\"row\">\n      <div  class=\"col-md-12\" formArrayName=\"Ingredient\">\n          <div id=\"indg_header\">Ingredients Used</div>\n          <div class=\"row col-md-4\" id=\"indg_header\">ItemName</div>  \n          <div class=\"row col-md-4\" id=\"indg_header\">Decription</div>\n          <div class=\"row col-md-4\" id=\"indg_header\">Price</div>\n          <div class=\"row\" *ngFor=\"let indg of getControls();let i = index\" [formGroupName]=\"i\" style=\"margin-top: 10px\">\n              <div class=\"col-md-4\">\n                <input class=\"\" type=\"text\" class=\"form-control\" formControlName=\"itemName\">\n              </div>\n              <div class=\"col-md-4\">\n                <input type=\"text\" class=\"form-control\" formControlName=\"itemDescp\">\n              </div>\n              <div class=\"col-md-2\">\n                <input type=\"number\" class=\"form-control\" formControlName=\"itemPrice\">\n              </div>  \n              <div class=\"col-md-2\">\n                <button type=\"button\" class=\"btn btn-danger\" (click)=\"onIndgDelete(i)\">X</button>\n              </div>  \n          </div>\n          <div class=\"row\" style=\"margin-top: 10px\">\n              <div class=\"col-md-2\">\n                  <button type=\"button\" class=\"btn btn-success\" (click)=\"onAddIndg()\">Add Ingredients</button>\n              </div>      \n          </div>\n      </div>\n    </div>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -217,6 +258,9 @@ var RecipeEditComponent = /** @class */ (function () {
     };
     RecipeEditComponent.prototype.onCancel = function () {
         this.router.navigate(['../'], { relativeTo: this.route });
+    };
+    RecipeEditComponent.prototype.getControls = function () {
+        return this.RecipeForm.get('ingredients').controls;
     };
     RecipeEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -327,7 +371,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"row\">\n    <div class=\"col-xs-12\">\n        <button class=\"btn btn-primary\" (click)=\"addNewRecipe()\">Add New Recipe</button>{{ mname }}\n    </div>\n</div>\n<hr>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n        <div class=\"list-group\">\n            <div *ngFor = \"let item of recipe;index as i\">\n                <app-recipe-item [item]=\"item\" [index]=\"i\"></app-recipe-item>\n            </div>\n        </div>\n   </div>\n</div>\n<br>\n"
+module.exports = "\n<div class=\"row\">\n    <div class=\"col-xs-12\">\n        <button class=\"btn btn-primary\" (click)=\"addNewRecipe()\">Add New Recipe</button>\n    </div>\n</div>\n<hr>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n        <div class=\"list-group\">\n            <div *ngFor = \"let item of recipe;index as i\">\n                <app-recipe-item [item]=\"item\" [index]=\"i\"></app-recipe-item>\n            </div>\n        </div>\n   </div>\n</div>\n<br>\n"
 
 /***/ }),
 
@@ -508,7 +552,8 @@ var RecipesRouter = /** @class */ (function () {
             ],
             exports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]
-            ]
+            ],
+            providers: [_auth_auth_guard_service__WEBPACK_IMPORTED_MODULE_6__["AuthGuard"]]
         })
     ], RecipesRouter);
     return RecipesRouter;

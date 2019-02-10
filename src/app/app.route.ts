@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
-import { Route, Routes, RouterModule } from "@angular/router";
+import { Route, Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { RecipesComponent } from "./recipes/recipes.component";
-import { HeaderComponent } from "./Core/header/header.component";
+import { HeaderComponent } from "./core/header/header.component";
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
@@ -22,7 +22,7 @@ const appRoute : Routes = [
 
 @NgModule({
     imports : [
-        RouterModule.forRoot(appRoute)
+        RouterModule.forRoot(appRoute,{ preloadingStrategy : PreloadAllModules })
     ],
     exports : [RouterModule]
 })

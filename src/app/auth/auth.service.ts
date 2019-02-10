@@ -1,15 +1,17 @@
 
 
 import { Injectable } from "@angular/core";
-import { Http , Response } from "@angular/http";
+import { HttpClient,HttpParams } from "@angular/common/http"
+//import { Http , Response } from "@angular/http";
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService{
-    tokenId:number = null;
+    tokenId:string = null;
 
-    constructor(private http:Http){
+    constructor(private HttpClient:HttpClient){
 
     }
 
@@ -26,7 +28,7 @@ export class AuthService{
             username : emailId,
             password : password
         }
-        return this.http.post('/register',usrObj);
+        return this.HttpClient.post('/register',usrObj);
     }
 
     signInUser(emailId,password){
@@ -34,18 +36,21 @@ export class AuthService{
             username : emailId,
             password : password
         }
-        return this.http.post('/login',usrObj)
+        return this.HttpClient.post('/login',usrObj)
         .pipe(
             map(
-                (res:Response)=>{
-                    return res.json();
+                (res)=>{
+                    return res;
                 }
             )
         )   
     }
 
     signOut(){
-        return this.http.get('/api/logout?token='+this.tokenId);
+        return this.HttpClient.get('/api/logout',{ 
+            observe : 'response', 
+        //    params : new HttpParams().set('token',this.tokenId )
+        });
     }
 
     isAuthenticated(){
